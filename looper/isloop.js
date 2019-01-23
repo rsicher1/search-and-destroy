@@ -27,4 +27,20 @@ This function should return the Node value the loop begins at
 Remember to write some test specs too!
 
 */
-module.exports = isLoop;
+
+// O(n) space complexity / 0(n) time complexity
+const findLoop = linkedList => {
+  let currentNode = linkedList.head;
+  while (currentNode) {
+    if ('visited' in currentNode) {
+      return currentNode.value;
+    }
+    currentNode.visited = true;
+
+    currentNode = currentNode.next;
+  }
+
+  return false;
+};
+
+module.exports = { isLoop, findLoop };
