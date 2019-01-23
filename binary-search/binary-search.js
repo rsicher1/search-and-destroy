@@ -31,16 +31,14 @@ const binarySearch2 = (array, target, startIndex, endIndex) => {
 
   const middleIndex = Math.floor((endIndex + startIndex) / 2.0);
 
-  console.log(middleIndex);
-
   if (target === array[middleIndex]) {
     return true;
   } else if (startIndex > endIndex) {
     return false;
   } else if (target > array[middleIndex]) {
-    return binarySearch(array, target, middleIndex + 1, endIndex);
+    return binarySearch2(array, target, middleIndex + 1, endIndex);
   } else if (target < array[middleIndex]) {
-    return binarySearch(array, target, startIndex, middleIndex - 1);
+    return binarySearch2(array, target, startIndex, middleIndex - 1);
   }
 };
 
