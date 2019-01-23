@@ -30,14 +30,24 @@ Remember to write some test specs too!
 
 // O(n) space complexity / 0(n) time complexity
 const findLoop = linkedList => {
-  let currentNode = linkedList.head;
-  while (currentNode) {
-    if ('visited' in currentNode) {
-      return currentNode.value;
-    }
-    currentNode.visited = true;
+  let slowerListNode = linkedList.head;
+  let fasterListNode = linkedList.head.next;
 
-    currentNode = currentNode.next;
+  while (fasterListNode) {
+    if (slowerListNode === fasterListNode) {
+      slowerListNode = linkedList.head;
+      fasterListNode = fasterListNode.next;
+      while (slowerListNode !== fasterListNode) {
+        slowerListNode = slowerListNode.next;
+        fasterListNode = fasterListNode.next;
+      }
+      return fasterListNode.value;
+    }
+
+    slowerListNode = slowerListNode.next;
+    fasterListNode = fasterListNode.next
+      ? fasterListNode.next.next
+      : fasterListNode.next;
   }
 
   return false;
